@@ -1,0 +1,4 @@
+<div data-controller="card" class="card" data-action="click->card#flip">
+  <span class="question"><%= @card.question %></span>
+  <span class="category"><%= @card.category.name %></span>
+</div>

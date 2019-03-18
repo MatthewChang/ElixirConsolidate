@@ -1,0 +1,32 @@
+<h2>Cards</h2>
+<%= for card <- @cards do %>
+  <div><%= render("_card.html", card: card) %></div>
+<% end %>
+<%#Card.create(%{question: "test",answer: "awn",due_at: DateTime.utc_now,last_answered_at: DateTime.utc_now, user_id: 1,category_id: 1})%>
+<%#Card.create(%{question: "test",answer: "awn",due_at: DateTime.utc_now,last_answered_at: DateTime.utc_now, user_id: 1, category_id: 1})%>
+<%#Card.create(%{question: "test",answer: "awn",due_at: DateTime.utc_now,last_answered_at: DateTime.utc_now, user_id: 1, category_id: 1})%>
+<%#Consolidate.Category.create(%{name: "test"})%>
+
+<%#Repo.all(Card) |> Enum.map(&Map.fetch!(&1,:answer))%>
+<%#%{answer: "test"} |> Map.fetch(:answer)%>
+
+
+<%#defmodule Util do%>
+  <%#def curry(fun,a) do%>
+    <%#&fun.(&1,a)%>
+  <%#end%>
+
+  <%#def curry(fun,a,b) do%>
+    <%#&fun.(&1,a,b)%>
+  <%#end%>
+
+  <%#def curry(fun,a,b,c) do%>
+    <%#&fun.(&1,a,b,c)%>
+  <%#end%>
+<%#end%>
+
+<%#defmodule Operators do%>
+  <%#def fetch(key), do: Util.curry(&Map.fetch/2,key)%>
+<%#end%>
+<%#import Operators%>
+<%#Repo.all(Card) |> Enum.map(fetch :answer)%>
