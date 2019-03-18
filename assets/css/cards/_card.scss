@@ -1,11 +1,17 @@
 .card {
-  display: flex;
-  background: blue;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px;
+  .front {
+    display: flex;
+    background: blue;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px;
+  }
 
   .category {
     color: red;
+  }
+  
+  .hidden {
+    display: none;
   }
 }

@@ -1,4 +1,9 @@
-<div data-controller="card" class="card" data-action="click->card#flip">
-  <span class="question"><%= @card.question %></span>
-  <span class="category"><%= @card.category.name %></span>
+<div data-controller="card" class="card" data-action="click->card#flip" data-card-flipped="false">
+  <div data-target="card.front" class="front">
+    <span class="question"><%= @card.question %></span>
+    <span class="category"><%= @card.category.name %></span>
+  </div>
+  <div data-target="card.back" class='hidden'>
+    <span class="answer"><%= @card.answer %></span>
+  </div>
 </div>
