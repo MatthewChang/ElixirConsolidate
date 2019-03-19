@@ -1,4 +1,3 @@
-<h2>Cards</h2>
 <%= for card <- @cards do %>
   <div><%= render("_card.html", card: card) %></div>
 <% end %>

@@ -1,0 +1,36 @@
+#menu-bar {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  padding: 0px;
+  background: blue;
+  span {
+    margin: auto;
+  }
+  .hamburger {
+    width: 35px;
+    height: 35px;
+    background: blue;
+    padding: 5px;
+    div {
+      background: white;
+      height: 4px;
+      width: 100%;
+      margin-bottom: 5px;
+    }
+  }
+  .menu {
+    background: blue;
+    width: 100px;
+    position: absolute;
+    left: 0px;
+    top: 35px;
+    a {
+      padding: 0px 4px 5px 10px;
+      color: black;
+      width: 100%;
+      display: block;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<div id="menu-bar" data-controller="menu">
+  <div class="hamburger" data-action="click->menu#toggle">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <span>Consolidate</span>
+  <div class="menu" data-target="menu.menu">
+    <a> Add New </a>
+    <a> View All </a>
+  </div>
+</div>
