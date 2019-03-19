@@ -25,8 +25,6 @@ defmodule ConsolidateWeb.Router do
     pipe_through [:browser, :auth]
 
     get "/", PageController, :index
-    get "/cards", CardsController, :index
-
     get "/login", SessionController, :new
     post "/login", SessionController, :login
     post "/logout", SessionController, :logout
@@ -37,7 +35,9 @@ defmodule ConsolidateWeb.Router do
   scope "/", ConsolidateWeb do
     pipe_through [:browser, :auth, :ensure_auth]
 
-    get "/secret", PageController, :secret
+    get "/cards", CardsController, :index
+    get "/cards/new", CardsController, :new
+    post "/cards", CardsController, :create
   end
 
   # Other scopes may use custom stacks.

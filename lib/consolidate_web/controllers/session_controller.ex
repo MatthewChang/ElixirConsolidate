@@ -7,7 +7,7 @@ defmodule ConsolidateWeb.SessionController do
     changeset = Accounts.change_user(%User{})
     maybe_user = Guardian.Plug.current_resource(conn)
     if maybe_user do
-      redirect(conn, to: "/secret")
+      redirect(conn, to: "/cards")
     else
       render(conn, "new.html", changeset: changeset, action: Routes.session_path(conn, :login))
     end
