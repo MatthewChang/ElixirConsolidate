@@ -30,11 +30,11 @@ defmodule ConsolidateWeb.Router do
     post "/logout", SessionController, :logout
   end
 
-
-# Definitely logged in scope
+  # Definitely logged in scope
   scope "/", ConsolidateWeb do
     pipe_through [:browser, :auth, :ensure_auth]
 
+    get "/home", CardsController, :home
     get "/cards", CardsController, :index
     get "/cards/new", CardsController, :new
     post "/cards", CardsController, :create

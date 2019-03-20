@@ -22,9 +22,11 @@ defmodule Consolidate.Accounts.User do
 
   defp put_password_hash(changeset) do
     case changeset do
-      %Ecto.Changeset{valid?: true, changes: %{password: password}} -> 
+      %Ecto.Changeset{valid?: true, changes: %{password: password}} ->
         change(changeset, password: Bcrypt.hashpwsalt(password))
-      _ -> changeset
+
+      _ ->
+        changeset
     end
   end
 end

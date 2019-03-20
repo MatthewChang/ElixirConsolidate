@@ -7,8 +7,8 @@ defmodule Consolidate.Card do
     field :due_at, :time
     field :last_answered_at, :time
     field :question, :string
-    field :user_id, :integer
     belongs_to :category, Consolidate.Category
+    belongs_to :user, Consolidate.User
 
     timestamps()
   end
@@ -18,8 +18,7 @@ defmodule Consolidate.Card do
   @doc false
   def changeset(card, attrs) do
     card
-    |> cast(attrs, [:question, :answer, :last_answered_at, :due_at, :category_id,:user_id])
-    |> validate_required([:question, :answer, :last_answered_at, :due_at, :category_id,:user_id])
+    |> cast(attrs, [:question, :answer, :last_answered_at, :due_at, :category_id, :user_id])
+    |> validate_required([:question, :answer, :last_answered_at, :due_at, :category_id, :user_id])
   end
 end
-

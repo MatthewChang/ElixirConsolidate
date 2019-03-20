@@ -103,12 +103,15 @@ defmodule Consolidate.Accounts do
   end
 
   alias Comeonin.Bcrypt
+
   def authenticate_user(email, plain_text_password) do
     query = from u in User, where: u.email == ^email
+
     case Consolidate.Repo.one(query) do
       nil ->
         Bcrypt.dummy_checkpw()
         {:error, :invalid_credentials}
+
       user ->
         if Bcrypt.checkpw(plain_text_password, user.password) do
           {:ok, user}

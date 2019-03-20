@@ -6,7 +6,8 @@
   </div>
   <span>Consolidate</span>
   <div class="menu" data-target="menu.menu">
+    <a href="<%= Routes.cards_path(@conn, :home) %>"> Home </a>
     <a href="<%= Routes.cards_path(@conn, :new) %>"> Add New </a>
-    <a> View All </a>
+    <a href="<%= Routes.cards_path(@conn, :index) %>"> View All </a>
   </div>
 </div>
