@@ -7,8 +7,8 @@ defmodule Consolidate.Card do
     field :due_at, :time
     field :last_answered_at, :time
     field :question, :string
-    belongs_to :category, Consolidate.Category
-    belongs_to :user, Consolidate.User
+    belongs_to :category, Consolidate.Category, [on_replace: :update]
+    belongs_to :user, Consolidate.User, [on_replace: :update]
 
     timestamps()
   end

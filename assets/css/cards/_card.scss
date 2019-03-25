@@ -1,6 +1,8 @@
 .card {
   padding: 14px;
   background: blue;
+  color: white;
+  display: inline-block;
   .front {
     display: flex;
     align-items: center;
@@ -9,8 +11,6 @@
       color: red;
     }
   }
-
-  
   .hidden {
     display: none;
   }

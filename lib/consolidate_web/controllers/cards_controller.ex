@@ -4,7 +4,8 @@ defmodule ConsolidateWeb.CardsController do
   alias Consolidate.Category
   alias Consolidate.Repo
   import Ecto.Query
-  import Consolidate.Util
+  use Consolidate.Util
+  alias ConsolidateWeb.Router.Helpers, as: Routes
 
   def home(conn, _params) do
     render(conn, "home.html",
@@ -16,28 +17,39 @@ defmodule ConsolidateWeb.CardsController do
     render(conn, "index.html", cards: Card |> preload(:category) |> Repo.all())
   end
 
+  def edit(conn, %{"id" => id}) do
+    render(conn, "new.html",
+      destination: Routes.cards_path(conn, :update, id),
+      categories: Category |> Repo.all(),
+      changeset: Card.changeset(Card.find(id), %{})
+    )
+  end
+
   def new(conn, _params) do
     render(conn, "new.html",
+      destination: Routes.cards_path(conn, :create),
       categories: Category |> Repo.all(),
       changeset: Card.changeset(%Card{}, %{})
     )
   end
 
-  def create(conn, %{"card" => card_params}) do
-    card_params = atomizeKeys(card_params)
-    user = Guardian.Plug.current_resource(conn)
+  def update(conn, %{"id" => id, "card" => card_params}) do
+    card_params = atomizeKeys(card_params) |> processNewCategory
+    Card.changeset(Card.find(id), card_params) |> Repo.update!()
 
-    cid =
-      case card_params.category_id do
-        "new" -> Category.create!(%{name: card_params.new_category}).id
-        x -> x
-      end
+    conn
+    |> put_flash(:info, "Card Updated #{id}")
+    |> redirect(to: Routes.cards_path(conn, :edit, id))
+  end
+
+  def create(conn, %{"card" => card_params}) do
+    card_params = atomizeKeys(card_params) |> processNewCategory
+    user = Guardian.Plug.current_resource(conn)
 
     attrs = %{
       due_at: DateTime.utc_now() |> Time.add(5),
       last_answered_at: DateTime.utc_now(),
-      user_id: user.id,
-      category_id: cid
+      user_id: user.id
     }
 
     card =
@@ -51,5 +63,17 @@ defmodule ConsolidateWeb.CardsController do
       categories: Category |> Repo.all(),
       changeset: Card.changeset(%Card{}, %{})
     )
+  end
+
+  def processNewCategory(params) do
+    {cid, nc, rest} = mapMatch(params, [:category_id, :new_category])
+
+    nid =
+      case cid do
+        "new" -> Category.create!(%{name: nc}).id
+        x -> x
+      end
+
+    merge(rest, %{category_id: nid})
   end
 end

@@ -1,4 +1,4 @@
-<%= form_for @changeset, Routes.cards_path(@conn,:create), ["data-controller": "new-card"], fn f -> %>
+<%= form_for @changeset, @destination, ["data-controller": "new-card"], fn f -> %>
   <div><span>Question:</span></br>
     <%= textarea f, :question %>
   </div>

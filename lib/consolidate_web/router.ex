@@ -35,9 +35,7 @@ defmodule ConsolidateWeb.Router do
     pipe_through [:browser, :auth, :ensure_auth]
 
     get "/home", CardsController, :home
-    get "/cards", CardsController, :index
-    get "/cards/new", CardsController, :new
-    post "/cards", CardsController, :create
+    resources "/cards", CardsController, except: [:show]
   end
 
   # Other scopes may use custom stacks.
