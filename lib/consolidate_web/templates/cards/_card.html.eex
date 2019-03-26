@@ -3,7 +3,13 @@
     <span class="question"><%= @card.question %></span>
     <span class="category"><%= @card.category.name %></span>
   </div>
-  <div data-target="card.back" class='hidden'>
-    <span class="answer"><%= @card.answer %></span>
+  <div data-target="card.back" class='back hidden'>
+    <div class="answer"><%= @card.answer %></div>
+    <%= if assigns[:buttons] do %>
+      <div>
+        <button>right</button>
+        <button>wrong</button>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -60,6 +60,7 @@ defmodule ConsolidateWeb.CardsController do
     conn
     |> put_flash(:info, "Card Added #{card.id}")
     |> render("new.html",
+      destination: Routes.cards_path(conn, :create),
       categories: Category |> Repo.all(),
       changeset: Card.changeset(%Card{}, %{})
     )
@@ -68,12 +69,9 @@ defmodule ConsolidateWeb.CardsController do
   def processNewCategory(params) do
     {cid, nc, rest} = mapMatch(params, [:category_id, :new_category])
 
-    nid =
-      case cid do
-        "new" -> Category.create!(%{name: nc}).id
-        x -> x
-      end
-
-    merge(rest, %{category_id: nid})
+    case cid do
+      "new" -> Map.put(rest, :category_id, Category.create!(%{name: nc}).id)
+      x -> Map.put(rest, :category_id, x)
+    end
   end
 end

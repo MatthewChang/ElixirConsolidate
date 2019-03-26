@@ -22,10 +22,12 @@ defmodule Consolidate.Util do
     var
   end
 
+  # easy access funciton
   def f(key) do
     &Map.fetch!(&1,key)
   end
 
+  # simulate destructuring assignment
   def mapMatch(m, vals) do
     Enum.map(vals, &Map.fetch!(m, &1)) |> List.to_tuple() |> Tuple.append(Map.drop(m, vals))
   end

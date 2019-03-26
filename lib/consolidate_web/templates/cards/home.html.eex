@@ -1,5 +1,7 @@
-<%= if(@card.due_at < DateTime.utc_now()) do %>
-  <div class="home"><%= render("_card.html", card: @card) %></div>
-<% else %>
-  <span>here</span>
-<% end %>
+<div id="home">
+  <%= if(@card.due_at < DateTime.utc_now()) do %>
+    <%= render("_card.html", card: @card, buttons: true) %>
+  <% else %>
+    <span>here</span>
+  <% end %>
+</div>

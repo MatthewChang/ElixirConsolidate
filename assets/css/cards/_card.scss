@@ -8,7 +8,14 @@
     align-items: center;
     justify-content: space-between;
     .category {
+      margin-left: 8px;
       color: red;
+    }
+  }
+  .back {
+    div {
+      display: flex;
+      justify-content: space-around;
     }
   }
   .hidden {

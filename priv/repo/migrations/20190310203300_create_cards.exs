@@ -3,8 +3,8 @@ defmodule Consolidate.Repo.Migrations.CreateCards do
 
   def change do
     create table(:cards) do
-      add :question, :string
-      add :answer, :string
+      add :question, :text
+      add :answer, :text
       add :last_answered_at, :time
       add :due_at, :time
       add :category_id, references(:categories)
