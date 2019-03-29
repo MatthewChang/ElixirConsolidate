@@ -4,8 +4,8 @@ defmodule Consolidate.Card do
 
   schema "cards" do
     field :answer, :string
-    field :due_at, :time
-    field :last_answered_at, :time
+    field :due_at, :utc_datetime
+    field :last_answered_at, :utc_datetime
     field :question, :string
     belongs_to :category, Consolidate.Category, [on_replace: :update]
     belongs_to :user, Consolidate.User, [on_replace: :update]

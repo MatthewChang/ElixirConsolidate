@@ -1,7 +1,7 @@
 <div id="home">
-  <%= if(@card.due_at < DateTime.utc_now()) do %>
-    <%= render("_card.html", card: @card, buttons: true) %>
+  <%= if(@card.due_at > DateTime.utc_now()) do %>
+    <%= render("_card.html", card: @card, buttons: true, conn: @conn) %>
   <% else %>
-    <span>here</span>
+    <span><%= diffText DateTime.utc_now(), @card.due_at %></span>
   <% end %>
 </div>

@@ -36,6 +36,8 @@ defmodule ConsolidateWeb.Router do
 
     get "/home", CardsController, :home
     resources "/cards", CardsController, except: [:show]
+    get "/cards/:id/right", CardsController, :right
+    get "/cards/:id/wrong", CardsController, :wrong
   end
 
   # Other scopes may use custom stacks.

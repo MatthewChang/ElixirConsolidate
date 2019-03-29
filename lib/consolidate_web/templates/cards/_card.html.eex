@@ -7,8 +7,10 @@
     <div class="answer"><%= @card.answer %></div>
     <%= if assigns[:buttons] do %>
       <div>
-        <button>right</button>
-        <button>wrong</button>
+        <a onclick="event.stopPropagation();" href="<%= Routes.cards_path(@conn,:right,@card.id) %>">
+          <button>right</button></a>
+        <a onclick="event.stopPropagation();" href="<%= Routes.cards_path(@conn,:wrong,@card.id) %>">
+          <button>wrong</button></a>
       </div>
     <% end %>
   </div>
