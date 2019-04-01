@@ -32,9 +32,11 @@ defmodule Consolidate.Util do
     Map.fetch!(map, key)
   end
 
-  def snd({a,b}), do: b
+  def snd({_,b}), do: b
 
-  def fst({a,b}), do: a
+  def fst({a,_}), do: a
+
+  def uncurry(f), do: fn {a,b} -> f.(a,b) end
 
   # simulate destructuring assignment
   def mapMatch(m, vals) do

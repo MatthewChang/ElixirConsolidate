@@ -6,6 +6,7 @@ defmodule ConsolidateWeb.CardsController do
   import Ecto.Query
   use Consolidate.Util
   alias ConsolidateWeb.Router.Helpers, as: Routes
+  import DateTime
 
   def home(conn, _params) do
     render(conn, "home.html",
@@ -67,22 +68,29 @@ defmodule ConsolidateWeb.CardsController do
   end
 
   def right(conn, %{"id" => id}) do
-    card = Repo.get!(Card,id)
+    func = fn card -> diff(utc_now(), card.last_answered_at) ~> (x * 1.5) |> trunc end
+    timeUpdate(conn,id,func)
+  end
 
-    if DateTime.utc_now() > card.due_at do
-      diff = DateTime.diff(DateTime.utc_now(), card.last_answered_at)
+  def wrong(conn, %{"id" => id}) do
+    func = fn card -> diff(card.due_at, card.last_answered_at) ~> (x / 8) |> trunc end
+    timeUpdate(conn,id,func)
+  end
 
-      Repo.get!(Card, id)
-      |> Card.changeset(%{due_at: DateTime.add(DateTime.utc_now(), diff * 2)})
+  def timeUpdate(conn, id, addFunction) do
+    card = Repo.get!(Card, id)
+    now = utc_now()
+
+    if compare(card.due_at, now) == :lt do
+      toAdd = addFunction.(card)
+
+      card
+      |> Card.changeset(%{due_at: add(now, toAdd), last_answered_at: now})
       |> Repo.update!()
     end
 
     redirect(conn, to: Routes.cards_path(conn, :home))
   end
-  Card |> Repo.all |> Enum.map(f :due_at)
-  #Repo.update_all(Card,set: [due_at: DateTime.utc_now()])
-  #Repo.update_all(Card,set: [last_answered_at: DateTime.utc_now()])
-  #DateTime.utc_now()
 
   def processNewCategory(params) do
     {cid, nc, rest} = mapMatch(params, [:category_id, :new_category])
