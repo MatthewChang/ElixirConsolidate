@@ -1,6 +1,6 @@
 /* This file is for your main application css. */
-@import "./phoenix.css";
 @import "./colors.scss";
+$defaultFontSize: 16px;
 body {
   padding: 0px;
   margin: 0px;
@@ -10,10 +10,61 @@ body {
   flex-direction: column;
   background: $background;
   color: $regularText;
+  font-family:: 'Helvetica','Arial',sans-serif;
+  front-weight: 300;
+  line-height: 1.6;
+  font-size: $defaultFontSize;
   main.container {
     flex-grow: 1;
   }
 }
+
+div {
+  box-sizing: border-box;
+}
+
+
 .hidden {
   display: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  padding: 7px 10px 7px 10px;
+  &.highlight {
+    background: $yellowHighlight;
+    color: $background;
+  }
+  &.lowlight {
+    background: $background;
+  }
+  border: none;
+  color: $regularText;
+  background: $deepGrey;
+  font-size: $defaultFontSize;
+  border-radius: 7px;
+}
+
+select {
+  color: $regularText;
+  font-size: $defaultFontSize;
+  border-color: $regularText;
+  background: $background;
+  padding: 4px;
+  &:after {
+    border-color: $regularText;
+  }
+}
+
+input, textarea {
+  box-sizing: border-box;
+  font-size: $defaultFontSize;
+  background: $background;
+  border-color: $regularText;
+  color: $regularText;
+  padding: 6px;
+  border-radius: 7px;
 }

@@ -8,9 +8,9 @@
     <%= if assigns[:buttons] do %>
       <div>
         <a onclick="event.stopPropagation();" href="<%= Routes.cards_path(@conn,:right,@card.id) %>">
-          <button>right</button></a>
+          <button class="highlight">Right</button></a>
         <a onclick="event.stopPropagation();" href="<%= Routes.cards_path(@conn,:wrong,@card.id) %>">
-          <button>wrong</button></a>
+          <button class="lowlight">Wrong</button></a>
       </div>
     <% end %>
   </div>

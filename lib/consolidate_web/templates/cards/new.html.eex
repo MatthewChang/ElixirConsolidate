@@ -1,12 +1,14 @@
-<%= form_for @changeset, @destination, ["data-controller": "new-card"], fn f -> %>
-  <div><span>Question:</span></br>
-    <%= textarea f, :question %>
-  </div>
-  <div><span>Answer:</span></br>
-    <%= textarea f, :answer %>
-  </div>
-  <%= select f, :category_id, ((@categories |> Enum.map(fn x -> {x.name,x.id} end))++[{"New","new"}]), 
-    ["data-target": "new-card.category" ,"data-action": "new-card#render"]%>
-  <%= text_input f, :new_category, [placeholder: "New Name", "data-target": "new-card.newCatName"] %>
-  <button>submit</button>
-<% end %>
+<div id="newCard">
+  <%= form_for @changeset, @destination, ["data-controller": "new-card"], fn f -> %>
+    <div><span>Question:</span></br>
+      <%= textarea f, :question %>
+    </div>
+    <div><span>Answer:</span></br>
+      <%= textarea f, :answer %>
+    </div>
+    <%= select f, :category_id, ((@categories |> Enum.map(fn x -> {x.name,x.id} end))++[{"New","new"}]), 
+["data-target": "new-card.category" ,"data-action": "new-card#render"]%>
+<%= text_input f, :new_category, [placeholder: "New Name", "data-target": "new-card.newCatName"] %>
+<button>Submit</button>
+  <% end %>
+</div>

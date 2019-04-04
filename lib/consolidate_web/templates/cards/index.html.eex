@@ -3,7 +3,7 @@
     <div class="cardLine">
       <%= render("_card.html", card: card) %>
       <a href="<%= Routes.cards_path(@conn,:edit,card.id) %>"><button>edit</button></a>
-      <button>delete</button>
+      <a href=""><button>delete</button></a>
     </div>
   <% end %>
 </div>
