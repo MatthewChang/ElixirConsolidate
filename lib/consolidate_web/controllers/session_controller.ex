@@ -22,7 +22,7 @@ defmodule ConsolidateWeb.SessionController do
   def logout(conn, _) do
     conn
     |> Guardian.Plug.sign_out()
-    |> redirect(to: "/login")
+    |> redirect(to: "/")
   end
 
   defp login_reply({:ok, user}, conn) do
@@ -31,7 +31,7 @@ defmodule ConsolidateWeb.SessionController do
     conn
     |> put_flash(:success, "Welcome back!")
     |> Guardian.Plug.sign_in(user)
-    |> redirect(to: "/secret")
+    |> redirect(to: "/")
   end
 
   defp login_reply({:error, reason}, conn) do

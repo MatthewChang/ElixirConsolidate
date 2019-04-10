@@ -24,7 +24,6 @@ defmodule ConsolidateWeb.Router do
   scope "/", ConsolidateWeb do
     pipe_through [:browser, :auth]
 
-    get "/", PageController, :index
     get "/login", SessionController, :new
     post "/login", SessionController, :login
     post "/logout", SessionController, :logout
@@ -34,7 +33,7 @@ defmodule ConsolidateWeb.Router do
   scope "/", ConsolidateWeb do
     pipe_through [:browser, :auth, :ensure_auth]
 
-    get "/home", CardsController, :home
+    get "/", CardsController, :home
     resources "/cards", CardsController, except: [:show]
     get "/cards/:id/right", CardsController, :right
     get "/cards/:id/wrong", CardsController, :wrong
