@@ -30,7 +30,7 @@ defmodule ConsolidateWeb.SessionController do
 
     conn
     |> put_flash(:success, "Welcome back!")
-    |> Guardian.Plug.sign_in(user)
+    |> Guardian.Plug.sign_in(user,%{}, ttl: {7, :days})
     |> redirect(to: "/")
   end
 
